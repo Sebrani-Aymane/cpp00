@@ -15,6 +15,10 @@ int  main(int ac,char **av)
         if (input=="ADD")
             phonebook.add();
         else if(input == "SEARCH")
-            phonebook.searchcontact();
+        phonebook.searchcontact();
+        else if (input == "EXIT")
+            exit(0);
+        else
+        std:: cout << "Usage : ADD/SEARCH/EXIT "<< std::endl;
     }
 }

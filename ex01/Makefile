@@ -1,6 +1,6 @@
 CC = g++
 
-FLAGS = -Wall -Wextra -Werror 
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp  phonebook.cpp  contact.cpp 
 

@@ -6,16 +6,12 @@
 /*   By: asebrani <asebrani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 22:00:42 by asebrani          #+#    #+#             */
-/*   Updated: 2025/03/05 04:34:29 by asebrani         ###   ########.fr       */
+/*   Updated: 2025/03/05 23:22:51 by asebrani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
-#include "contact.hpp"
-#include <iostream>
-#include <string>
-#include <iomanip>
-#include <cstring>
+
 
 int PhoneBook::check(std::string input)
 {
@@ -29,17 +25,38 @@ int PhoneBook::check(std::string input)
     
     for (int i = 0; i < (int)input.size() ;i++)
     {
-        if (std::isprint(input[i]) && !isspace(input[i]))
-            checkvalid =1;
+        if (!std::isprint(input[i]))
+            checkvalid = 1;
     }
-        if (!checkvalid)
+        if (checkvalid)
         {
-            std::cout << "Error cannot only contain whitespaces" << std::endl;
+            std::cout << "Error invalid contact infos" << std::endl;
             return(0);
         }
         return(1);
 }
 
+int PhoneBook::check1(std::string input)
+{
+    int index=0;
+    for (int i =0; i < (int)input.size();i++)
+    {
+        if (!isdigit(input[i]))
+            return 0;
+    }
+    for(int i=0;i < (int)input.size();i++)
+    {
+        
+        if (input[i] != '0')
+        {
+            index = i;
+            break;
+        }
+    }
+    if (!(input[index] <= '0' && input[index] >= '9' ) || input.size() - index >= 2 )
+        return 0;
+    return(1);
+}
 
 void PhoneBook::set_contact(Contact contact)
 {
@@ -108,22 +125,12 @@ void PhoneBook::display(int index)
     std::cout << std::setfill(' ');
     std::string input;
     
-    std::cout << std::setw(10) << "Index " << "|"
-              << std::setw(10) << "First Name" << "|"
-              << std::setw(10) << "Last Name" << "|"
-              << std::setw(10) << "Nickname" << "|"
-              << std::setw(10) << "PhoneNumber" << "|"
-              << std::setw(10) << "DarkestSecret" << "|"
-              << std:: endl;
-    std::cout << std::string(43, '_') << "\n";
-
-
-        std::cout << std::setw(10) << index << "|"
-                  << std::setw(10) << contacts[index -1].get_fn() << "|"
-                  << std::setw(10) << contacts[index -1].get_ln() << "|"
-                  << std::setw(10) << contacts[index -1].get_nn() << "|"
-                  << std::setw(10) << contacts[index -1].get_pn() << "|"
-                  << std::setw(10) << contacts[index -1].get_ds() << std::endl;
+    std::cout   << "Index            :" <<  index << "\n"
+                << "First Name       :" << contacts[index -1].get_fn() << "\n"
+                << "Last Name        :"<<  contacts[index -1].get_ln() << "\n"
+                << "Nickname         :" << contacts[index -1].get_nn() << "\n"
+                << "PhoneNumber      :"<< contacts[index -1].get_pn() << "\n"
+                << "DarkestSecret    :"<<  contacts[index -1].get_ds() << std::endl;
 }
 
 
@@ -148,9 +155,9 @@ void PhoneBook::searchcontact() {
     }
     std::cout << "Enter contact's index to show full attributes" << std::endl;
     std::getline(std::cin,input);
-    if (!check(input) || input == "EXIT"){
-        std::cout<< "here"<< std::endl;
-        return;}
+    if (!check(input) || input == "EXIT" || !check1(input)){
+        std::cout << "Invalid index (: :)" << std:: endl;
+        return ;}
     else
         display(atoi(input.c_str()));
 }

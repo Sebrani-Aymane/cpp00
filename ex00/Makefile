@@ -1,15 +1,25 @@
-c = c++
-flags = -Wall -Wextra -Werror 
-src = megaphone.cpp
-obj = $(src:.cpp = .o)
-name = Megaphone
-all = $(name)
-$(name) : $(obj)
-		$(cc) $(flags) -o $(name) $(obj)
-%.o: %.c
-	$(cc)$(flags) $< -o $@
+CC = g++
+
+FLAGS = -Wall -Wextra -Werror -std=c++98
+
+SRC = megaphone.cpp 
+
+OBJ = $(SRC:.cpp=.o)
+
+NAME = megaphone
+
+all :$(NAME)
+
+$(NAME) : $(OBJ)
+		$(CC) $(FLAGS) -o $(NAME) $(OBJ)
+
+%.o: %.cpp
+	$(CC) $(FLAGS) -c $< -o $@
+	
 clean :
-		rm -f $(obj)
+		rm -f $(OBJ)
+
 fclean : clean	
-	rm -f  $(name)
+	rm -f  $(NAME)
+
 re : fclean all

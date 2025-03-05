@@ -6,15 +6,11 @@
 /*   By: asebrani <asebrani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:54:21 by asebrani          #+#    #+#             */
-/*   Updated: 2025/03/05 02:21:51 by asebrani         ###   ########.fr       */
+/*   Updated: 2025/03/05 11:40:16 by asebrani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
-#include "contact.hpp"
-#include <iostream>
-#include <string>
-#include <cstring>
 
 void Contact::set_fn(std::string value) {
     this->firstname = value;

@@ -1,4 +1,4 @@
-CC = c++
+CC = g++
 
 FLAGS = -Wall -Wextra -Werror 
 

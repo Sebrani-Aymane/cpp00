@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.hpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asebrani <asebrani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 01:43:59 by asebrani          #+#    #+#             */
-/*   Updated: 2025/03/05 02:00:23 by asebrani         ###   ########.fr       */
+/*   Created: 2025/03/05 00:48:16 by asebrani          #+#    #+#             */
+/*   Updated: 2025/03/05 02:00:38 by asebrani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-#define PHONEBOOK_HPP
-#include "contact.hpp"
+#include "ex01.hpp"
 
-class PhoneBook{
-    private:
-        Contact contacts[8];
-        int contactnum;
-    public:
-    void add();
-    void searchcontact();
-    void set_contact(Contact contact);
-    void display(PhoneBook Phonebook);
-    int check(std::string input);
-    
-};
-
-
-
-
-#endif
+int  main(int ac,char **av)
+{
+    PhoneBook phonebook;
+    std::string input;
+    if (ac!= 1)
+        return(std::cout <<"Error invalid params"<< std::endl,0);
+    while (1){
+        if (input=="ADD")
+            phonebook.add();
+    }
+}

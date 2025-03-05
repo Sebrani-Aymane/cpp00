@@ -6,11 +6,15 @@
 /*   By: asebrani <asebrani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 22:00:42 by asebrani          #+#    #+#             */
-/*   Updated: 2025/03/05 02:00:17 by asebrani         ###   ########.fr       */
+/*   Updated: 2025/03/05 02:36:52 by asebrani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ex01.hpp"
+#include "phonebook.hpp"
+#include "contact.hpp"
+#include <iostream>
+#include <string>
+#include <cstring>
 
 int PhoneBook::check(std::string input)
 {
@@ -20,14 +24,13 @@ int PhoneBook::check(std::string input)
         return (0);
     }
     
-    for (int i = 0; i < input.size() ;i++)
+    for (int i = 0; i < (int)input.size() ;i++)
     {
-        if (std::isspace(input[i]))
+        if (std::isprint(input[i]) == 0)
             i++;
         else
-            break;
-            
-        if (i == input.size())
+            break; 
+        if (i == (int)input.size())
         {
             std::cout << "Error cannot only contain whitespaces" << std::endl;
             return(0);
@@ -35,6 +38,7 @@ int PhoneBook::check(std::string input)
     }
     return(1);
 }
+
 void PhoneBook::set_contact(Contact contact)
 {
     static int index =0;

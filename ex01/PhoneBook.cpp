@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asebrani <asebrani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 22:00:42 by asebrani          #+#    #+#             */
-/*   Updated: 2025/03/05 23:22:51 by asebrani         ###   ########.fr       */
+/*   Updated: 2025/03/07 00:53:36 by asebrani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.hpp"
+#include "PhoneBook.hpp"
 
 
 int PhoneBook::check(std::string input)
@@ -53,7 +53,7 @@ int PhoneBook::check1(std::string input)
             break;
         }
     }
-    if (!(input[index] <= '0' && input[index] >= '9' ) || input.size() - index >= 2 )
+    if (input.size() - index >= 2 )
         return 0;
     return(1);
 }
@@ -73,40 +73,45 @@ void PhoneBook::add()
     std::string input;
     while(1){
     std::cout << "Enter Contact's First Name"<< std::endl;
-    std::getline(std::cin,input);
+    if(!getline(std::cin,input))
+        exit(0);
     if (check(input))
         break;
     }
     newcontact.set_fn(input);
     while(1){
     std::cout << "Enter Contact's Last Name"<< std::endl;
-    std::getline(std::cin,input);
+    if(!getline(std::cin,input))
+    exit(0);
     if (check(input))
         break;
     }
     newcontact.set_ln(input);
     while(1){
     std::cout << "Enter Contact's Nick Name"<< std::endl;
-    std::getline(std::cin,input);
+    if(!getline(std::cin,input))
+    exit(0);
     if (check(input))
         break; 
     }
     newcontact.set_nn(input);
     while(1){
     std::cout << "Enter Contact's Phone Number"<< std::endl;
-    std::getline(std::cin,input);
+    if(!getline(std::cin,input))
+    exit(0);
     if (check(input))
         break;
     }
     newcontact.set_pn(input);
     while(1){
     std::cout << "Enter Contact's Darkest Secret"<< std::endl;
-    std::getline(std::cin,input);
+    if(!getline(std::cin,input))
+    exit(0);
     if (check(input))
         break;
     }
     newcontact.set_ds(input);
-   set_contact(newcontact);
+    set_contact(newcontact);
     std::cout << "Contact added successfully"<< std:: endl;
 }
 
@@ -135,7 +140,6 @@ void PhoneBook::display(int index)
 
 
 void PhoneBook::searchcontact() {
-    std::cout << std::setfill(' ');
     std::string input;
     
     std::cout << std::setw(10) << "Index" << "|"
@@ -154,7 +158,8 @@ void PhoneBook::searchcontact() {
         
     }
     std::cout << "Enter contact's index to show full attributes" << std::endl;
-    std::getline(std::cin,input);
+    if(!getline(std::cin,input))
+    exit(0);
     if (!check(input) || input == "EXIT" || !check1(input)){
         std::cout << "Invalid index (: :)" << std:: endl;
         return ;}
